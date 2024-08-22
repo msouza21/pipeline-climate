@@ -1,0 +1,27 @@
+services:
+  postgresql:
+    image: postgres:16
+    container_name: pgsql-cli
+    environment:
+      POSTGRES_DB: pgcli
+      POSTGRES_USER: pgcli
+      POSTGRES_PASSWORD: pgcli12
+    ports:
+      - "5455:5432"
+    volumes:
+      - ./pgdata:/pgdata
+      - ./pgdata/pg_hba.conf:/pgdata/pg_hba.conf
+      - ../../src:/src
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pgcli"]
+      interval: 10s
+      retries: 2
+      timeout: 10s
+      start_period: 5s
+    networks:
+      - pgsql
+      
+networks:
+  pgsql:
+    name: pgsql
+    driver: bridge

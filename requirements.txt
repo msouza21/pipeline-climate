@@ -1,0 +1,6 @@
+boto3
+confluent-kafka
+prefect
+psycopg2-binary
+pyspark
+pytest

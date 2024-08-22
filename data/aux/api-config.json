@@ -1,0 +1,35 @@
+{
+    "openweather": {
+        "url": "http://api.openweathermap.org/data/2.5/weather",
+        "params": {
+            "q": "New York",
+            "units": "metric",
+            "appid": ""
+        }
+    },
+    "weatherapi": {
+        "url": "http://api.weatherapi.com/v1/current.json",
+        "params": {
+            "q": ""
+        }
+    },
+    "weatherbit": {
+        "url": "https://api.weatherbit.io/v2.0/current",
+        "params": {
+            "city": ""
+        }
+    },
+    "openaq": {
+        "url": "https://api.openaq.org/v2/locations",
+        "params": {
+            "city": ""
+        }
+    },
+    "bigdata": {
+        "url": "https://api.bigdatacloud.net/data/reverse-geocode-client",
+        "params": {
+            "latitude": "",
+            "longitude": ""
+        }
+    }
+}

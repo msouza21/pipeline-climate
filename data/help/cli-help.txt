@@ -1,0 +1,25 @@
+To store dump file for backup db, from one pc to other(my case, because modifying the project in 2 pc's)
+Using pg_dump to transfer the data and load in other host
+For postgres in docker first need to entry in cli of pgsql container
+
+cli: docker ps #to find the container id
+cli: docker exec -it id_container bash
+root@id_container: pg_dump -U pgdck -d pgdck -F c -b -v -f /pgdata/pgdck.dump
+exit
+
+Where -U is user and -d the database, -F to format file and c is custom format 
+-b to binary values too, -v is verbose output and -f final local save in volume,later exit terminal
+
+In back to cli linux, do command to copy the file in dir where is execute this command
+docker cp postsql:/pgdata/pgdck.dump . #The '.' indicate the current local
+
+Later executing the same compose in other pc, do cp from local to container volume
+docker cp pgdck.dump postsql:/pgdata/pgdck.dump
+
+Now exec -it in container id from this container postgres and executing the command to restore the data from the volume
+pg_restore -U pgdck -d pgdck -v /pgdata/pgdck.dump
+
+
+One command to use the correct ip in connection master container from spark, where is the ip to communicate with docker, below command
+ip addr show
+
