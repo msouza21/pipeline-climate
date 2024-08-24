@@ -1,5 +1,4 @@
-import sys
-import os
+import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 #Imports from Prefect service
@@ -14,10 +13,11 @@ from process.main import main as process_main
 
 #With the functions correct imported, now create the workflow
 
+
 @flow(name="Pipeline Climate",
-      description="Pipeline workflow orquestration")
+      description="Pipeline workflow orquestration each 5 min")
 def pipe_flow():
-    ingestion_main()
+    ingestion_main()   
     process_main()
 
 #This function control the flow of the other tasks
@@ -26,7 +26,7 @@ def pipe_flow():
 #Scheduling
 schedules = [ IntervalSchedule(
     interval=timedelta(minutes=5),
-    anchor_date=datetime(2024, 8, 21, 1, 30)
+    anchor_date=datetime(2024, 8, 24, 1, 32)
 )]
 
 #Deployment

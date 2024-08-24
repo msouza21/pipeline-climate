@@ -1,18 +1,14 @@
 from confluent_kafka import Producer
 from config.kafka_config import msg_limit, message_count, get_partitions, create_partitions
-from manage_data import write_data
-import time
-
+from ingestion.manage_data import write_data
 #Kafka config complete
 
 prod_conf = {
-    'bootstrap.servers': 'broker-1:29092,broker-2:29094',
+    'bootstrap.servers': 'localhost:9092,localhost:9094',
     'client.id': 'py-producer'
 }
 
 prod = Producer(**prod_conf) 
-
-prod_delay = 300
 
 def msg_report(err, msg):
     if err is not None:
@@ -35,7 +31,7 @@ def produce_msg(topic, data, format):
     else:
         file_ext = 'data' 
 
-    try:       
+    try:      
         prod.produce(topic, key='data', value = prod_data, headers=[('file_ext', file_ext)])
         prod.poll(0)
         message_count += 1
@@ -45,8 +41,5 @@ def produce_msg(topic, data, format):
             create_partitions(topic, current + 1)
             message_count = 0
 
-        time.sleep(prod_delay)
-        
     except Exception as e:
         print(f'Error producing message: {str(e)}')
-            

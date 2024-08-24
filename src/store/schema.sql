@@ -1,4 +1,4 @@
--- Active: 1722192827086@@localhost@5445
+-- Active: 1722192827086@@localhost@5455
 CREATE TABLE IF NOT EXISTS openweather_data (
     name VARCHAR(50) NOT NULL,
     lat  FLOAT,

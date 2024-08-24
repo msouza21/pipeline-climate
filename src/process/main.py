@@ -13,8 +13,9 @@ from prefect import task
 def main():
 
     s3 = create_client()
-
-    last_processed = datetime.now(timezone.utc) - timedelta(minutes=5)
+    
+    utc_3 = timezone(timedelta(hours=-3))
+    last_processed = datetime.now(utc_3) - timedelta(minutes=50)
     logging.info(f"Processing files modified after: {last_processed}")
 
     json_files = list_json(s3, s3_bucket, s3_prefix, last_processed)
@@ -33,7 +34,7 @@ def main():
                 logging.info("Failed to process dataframe")
         else:
             logging.error("Failed to process JSON file")
-#    spark.stop()
+    spark.stop()
 
 if __name__ ==  "__main__":
     main()

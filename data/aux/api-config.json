@@ -10,26 +10,26 @@
     "weatherapi": {
         "url": "http://api.weatherapi.com/v1/current.json",
         "params": {
-            "q": ""
+            "q": "São Paulo,BR"
         }
     },
     "weatherbit": {
         "url": "https://api.weatherbit.io/v2.0/current",
         "params": {
-            "city": ""
+            "city": "Rio de Janeiro"
         }
     },
     "openaq": {
         "url": "https://api.openaq.org/v2/locations",
         "params": {
-            "city": ""
+            "city": "Tokyo"
         }
     },
     "bigdata": {
         "url": "https://api.bigdatacloud.net/data/reverse-geocode-client",
         "params": {
-            "latitude": "",
-            "longitude": ""
+            "latitude": "48.8566",
+            "longitude": "2.3522"
         }
     }
 }

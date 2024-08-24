@@ -22,9 +22,9 @@ param_info = {
     'q': 'location'
 }
 
-api_names = ['openweather']
+api_names = ['openweather', 'weatherapi', 'weatherbit', 'openaq', 'bigdata']
 
-admin_client = AdminClient({'bootstrap.servers': 'broker-1:29092,broker-2:29094'})
+admin_client = AdminClient({'bootstrap.servers': 'localhost:9092,localhost:9094'})
 
 message_count = 0
 msg_limit = 50

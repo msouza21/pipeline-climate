@@ -25,7 +25,7 @@ hadoopConf.set("fs.s3a.access.key",aws_creds["AWS_ACCESS_KEY_ID"])
 hadoopConf.set("fs.s3a.secret.key",aws_creds["AWS_SECRET_ACCESS_KEY"])
 hadoopConf.set("f3.s3a.endpoint", f"s3.{aws_creds['AWS_REGION_BUCKET']}.amazonaws.com")
 
-db_url = "jdbc:postgresql://postgres:5455/pgcli" #Url to connect the db of compose
+db_url = "jdbc:postgresql://localhost:5455/pgcli" #Url to connect the db of compose
 
 db_properties = {
     "user": "pgcli",

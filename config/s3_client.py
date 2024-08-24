@@ -2,8 +2,7 @@ import os, boto3, json
 from dotenv import load_dotenv
 load_dotenv()
 
-
-config_path = os.path.join("../../ignore/config.json")
+config_path = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'ignore')), 'config.json')
 
 s3_bucket = 's3bucketsz'
 s3_prefix = 'data/'

@@ -3,7 +3,7 @@ from io import BytesIO, StringIO
 import pyarrow as pa
 import pyarrow.parquet as pq
 import pyarrow.orc as orc
-from api import read_json_data
+from ingestion.api import read_json_data
 from config.kafka_config import api_configs
 
 #For others types of data, functions personalized to these, like CSV,Parquet and others

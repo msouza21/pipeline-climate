@@ -18,8 +18,8 @@ def deploy_services():
             print(f"Deploying {service}...")
             os.chdir(service_dir)
             os.system('docker-compose up -d')
-            print('Waiting 10 seconds for next compose')
-            time.sleep(10)
+            print('Waiting 30 seconds for next compose')
+            time.sleep(30)
             print("Deployment completed")
         else:
             print(f"Compose file not found for {service} at {compose_file}")

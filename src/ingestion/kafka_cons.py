@@ -4,33 +4,33 @@ from config.s3_client import s3_client
 from config.kafka_config import api_names
 import time
 
-cons_delay = 300
-
 load_dotenv()
 
+topics = []
 for api_name in api_names:
-    topic = api_name
+    topics.append(api_name)
 
 def upload_s3(file_name, data):
     bucket_name = 's3bucketsz'
-
     try:
         s3_client.put_object(Bucket=bucket_name, Key=file_name, Body=data)
         print(f'Uploading {file_name} to S3')
-        time.sleep(cons_delay)
+        #time.sleep(300)
     except Exception as e:
         print(f'Error uploading {file_name} to S3: {str(e)}')
 
-def consumer_msg():
-
+def consumer_msg(api_name):
+   
     cons_config = {
-        'bootstrap.servers': 'broker-1:29092,broker-2:29094',
-        'group.id': 's3-consumer',
-        'auto.offset.reset': 'earliest'
+        'bootstrap.servers': 'localhost:9092,localhost:9094',
+        'group.id': f's3-consumer-{api_name}',
+        'auto.offset.reset': 'earliest',
+        'max.poll.interval.ms': 500000,
+        'session.timeout.ms': 45000
     }
 
     cons = Consumer(cons_config)
-    cons.subscribe([topic])
+    cons.subscribe([api_name])
 
     i = 0
     while True:

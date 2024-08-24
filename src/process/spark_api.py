@@ -1,13 +1,15 @@
+import sys, logging, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+
 from config.spark_config import spark
 from pyspark.sql.functions import col, explode
-import logging
 
-data_dir = "s3a://s3bucketsz/data/"
+data_dir = "s3a://s3bucketsz/"
 
 def process_json(spark, json_file):
     try:
-        df = spark.read.json(data_dir + json_file, multiline=True)
-        api_name = json_file.split('-')[0]
+        df = spark.read.option("multiline", "true").json(data_dir + json_file)
+        api_name = json_file.split('/')[1].split('-')[0]
         return df, api_name
     except Exception as e:
         logging.error(f"Error processing JSON file`{json_file}: {e}")
